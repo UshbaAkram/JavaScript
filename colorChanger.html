@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Color Changer</title>
+</head>
+<body>
+    <button id="start">Start</button>
+    <button id="end">End</button>
+
+    <script>
+        function randomColor(){
+            const hex = '0123456789ABCDEF';
+            let color = '#';
+            for(let i=0; i < 6; i++){
+                color += hex[Math.floor(Math.random() * 16)];
+                
+            }
+            console.log(color);
+            return color;
+        }
+    let timeout; 
+      function start(){
+        if(!timeout){
+        timeout = setInterval(() => {
+            document.body.style.backgroundColor = randomColor();
+
+        },1000)
+    }
+      }  
+      function stop(){
+        clearInterval(timeout);
+        timeout=null;
+        //document.body.style.backgroundColor = randomColor();
+      } 
+      document.getElementById('start').addEventListener('click',start);
+      document.getElementById('end').addEventListener('click',stop);
+
+    </script>
+</body>
+</html>
+
+
+
+<!-- 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Color Changer</title>
+</head>
+<body>
+    <button id="start">Start</button>
+    <button id="end">End</button>
+
+    <script>
+        function randomColor(){
+            const hex = '0123456789ABCDEF';
+            let color = '#';
+            for(let i=0; i<6; i++){
+                color += hex[Math.floor(Math.random() * 16)];
+            }
+            console.log(color);
+            return color;
+        }
+
+        function start(){
+            document.body.style.backgroundColor = randomColor();
+        }
+
+        function end(){
+            // Reset background color or do any other actions when "End" button is clicked
+            document.body.style.backgroundColor = ''; // Reset to default color
+        }
+
+        document.getElementById('start').addEventListener('click', start);
+        document.getElementById('end').addEventListener('click', end);
+    </script>
+</body>
+</html> -->

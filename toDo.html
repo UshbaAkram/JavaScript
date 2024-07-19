@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To Do List</title>
+    <style>
+        .container{
+           
+            background-color: #dfe2e2;
+            
+            border-radius: 7px;
+            height: 320px;
+            width: 300px;
+            margin: 0 auto;
+           
+            justify-content: center;
+            text-align: center;
+            
+        }
+        h1{
+           text-align: center;
+        }
+        .input{
+            border: none;
+            background-color: #feffff;
+            height: 30px;
+            width:80%;
+            border-radius: 5px;
+            }
+            #btn{
+            border: none;
+            background-color: #feffff;
+            height: 30px;
+            width:80%;
+            border-radius: 5px;
+            background-color: rgb(171, 184, 192);
+            color: #ffffff;
+            font-weight: 10px;
+            }
+            ul{
+                list-style: none;
+            }
+            li{
+                display: flex;
+              text-align: start;
+            align-items: center;
+              border: 2px solid red;
+            }
+            
+            .check{
+                margin-right: 5px;
+                border: none;
+                width: 14px;
+                 }
+            .del{
+                /* width: 10%; */
+                /* padding: 5px; */
+                background-color: #3a4d63d5;
+                color: #fff;
+                border: none; 
+                padding: 3px 5px;
+                 border-radius: 5px;
+                cursor: pointer;
+                /* margin-right: 0; */
+                 justify-self: end;
+                 margin-left: auto;
+            }
+            .dClick{
+                text-decoration: line-through;
+                color: lightblue;
+            }
+            
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>To Do List</h1>
+        <input type="text" placeholder="  Task Here.." class="input"  >
+        <ul id="list"></ul>
+        <button id="btn" > Add Task</button>
+    </div>
+   <script>
+    const input = document.querySelector('.input');
+    const list = document.querySelector('#list');
+    const btn = document.querySelector('#btn');
+    
+var num = 0;
+
+    function del(li){
+        var i = document.createElement('button');
+        i.classList.add('del');
+        i.textContent="del";
+        i.addEventListener('click', ()=>{
+            li.remove();
+        })
+        li.appendChild(i);
+    }
+    
+
+    btn.addEventListener('click',function(){
+               
+        const li  = document.createElement('li');
+        var checkbox = document.createElement('input');
+         checkbox.type = 'checkbox';
+         checkbox.classList.add('check');
+        // li.textContent=input.value;
+         console.log(li)
+         var item = document.createElement('span');
+         item.textContent = input.value;
+         console.log(item)
+        //  var count = document.createElement('span');
+        // num++;
+        // console.log(num);
+        // count.textContent= num;
+        // console.log(count);    
+       //  li.appendChild(count)
+   // li.insertBefore(checkbox, li.firstChild);    
+   li.appendChild(checkbox);
+   li.appendChild(item);
+    list.appendChild(li);
+    console.log(li)
+    del(li);
+
+    li.addEventListener('dbclick',(e)=>{
+        li.classList.add('dClick');
+    })
+    //edit(li);
+    // _______________EDIT ______________
+
+        var e = document.createElement('button');
+        var text = document.createElement('span');
+        text.textContent = li.value;
+        console.log(li.value + " li.value" + text)
+        e.classList.add('edit');
+        e.textContent="Edit";
+        li.appendChild(e);
+    e.addEventListener('click',function(){
+        
+        e.addEventListener('click', ()=>{
+           // console.log(input.value)
+            // input.textContent =li.textContent;
+            e.remove();
+            var ok = document.createElement('button');
+            ok.ClassList.add('btn');
+            ok.textContent = "OK";
+            li.appendChild(ok)
+            ok.addEventListener('change',(e)=>{
+
+            })
+            var edit = document.createElement('input');
+            edit.type="text";
+            edit.value=li.textContent;
+            li.textContent ='';
+            // console.log(edit.textContent + "edit.textcontent" ) 
+            // const thirdChild = li.children[0];
+           
+            li.appendChild(edit)
+            // li.removeChildNodes(3);
+            // li.removeChild(2);
+            // li.removeChild(0);
+                       
+        })
+        li.appendChild(e);
+    })
+    })
+
+   </script>
+    
+</body>
+</html>

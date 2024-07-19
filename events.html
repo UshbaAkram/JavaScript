@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Events</title>
+    <style>
+        .list-item{
+            display: block;
+            width : 80px;
+            height:70px;
+            background-color: #1bc08f;
+            border:2px solid black;
+            margin-bottom: 5px;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+    <ul class="list">
+        <li class="list-item" id="cat">Cat</li>
+        <li class="list-item" id="dog">Dog</li>
+        <li class="list-item" id="cow">Cow</li>
+        <li class="list-item" id="horse">Horse</li>
+        <li class="list-item" id="whale">Whale</li>
+    </ul>
+<button id="API">Here is the API</button>
+<button id="weather">Here is the API</button>
+<p>Click the button to get your coordinates.</p>
+
+<button onclick="getLocation()">Try It</button>
+
+<p id="demo"></p>
+
+
+    <script>    
+       const list = document.querySelector('.list');
+       const item = document.querySelectorAll('.list-item');
+       console.log(item);
+       list.addEventListener('click', function(e){
+        //console.log("here is the list" );
+       // console.log(list)
+        //console.log(e.target)
+        e.target.remove();
+                
+       })
+     
+//____________API________
+
+        document.getElementById('API').addEventListener('click' ,() => {fetch('https://api.github.com/users/hiteshchoudhary')
+            .then(response => response.json())
+        .then(data => console.log(data.id))
+        .catch(error => console.error('Error fetching data:', error));})
+
+//______Api example 2______
+
+ const weather = document.getElementById('weather');
+ weather.addEventListener('click', function (){
+        fetch('https://jsonplaceholder.typicode.com/posts')
+        .then((resoponse)=>{
+        //    const data = resoponse.json();
+        //     console.log(data);
+        return resoponse.json()
+        })
+        .then((data)=>{
+            console.log(data);
+            console.log(data.userId);
+            const firstPostTitle = data[0].id;
+            const newPara = document.createElement('p');
+            newPara.appendChild('body');
+            newPara.innerHTML = firstPostTitle;
+
+      console.log('First post title:', firstPostTitle);
+        })
+        .catch((error)=>{
+            console.log("Error :()" + error)
+        })
+ })
+
+ 
+    </script>
+
+    <!-- ______Api example 3______ -->
+
+    <script>
+        const x = document.getElementById("demo");
+        
+        function getLocation() {
+          try {
+            navigator.geolocation.getCurrentPosition(showPosition);
+          } catch {
+            x.innerHTML = err;
+          }
+        }
+        
+        function showPosition(position) {
+          x.innerHTML = "Latitude: " + position.coords.latitude + 
+          "<br>Longitude: " + position.coords.longitude;
+        }
+        </script>
+
+<!-- ______________Form Validation_______  -->
+<input id="id1" type="number" min="200" max="300" required>
+<button onclick="myFunction()">OK</button>
+
+<p id="demo"></p>
+
+<script>
+function myFunction() {
+  const inpObj = document.getElementById("id1");
+  if (!inpObj.checkValidity()) {
+    document.getElementById("demo").innerHTML = inpObj.validationMessage;
+  }
+  else {
+    document.getElementById("demo").innerHTML = "Input OK";
+}
+}
+
+</script>
+
+</body>
+</html>

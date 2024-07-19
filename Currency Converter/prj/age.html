@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>age Calulater</title>
+    <style>
+        .container{
+           /* width:100%; */
+           height: 100vh;
+           /* margin: 0 auto 0 auto; */
+            padding: 10px;
+            color: #fff;
+            background: linear-gradient(35deg, rgb(32, 6, 66), rgb(8, 22, 87));
+        }
+        .calculater{
+            /* border: 2px solid red; */
+            max-width: 600px;
+            margin-left:5% ;
+            margin-top: 10%;
+            width: 100%;
+        }
+        h1{
+            font-size: 55px;
+        }
+        .input-box{
+             margin: 40px 0;
+            padding: 25px;
+            border-radius: 10px;
+            background: rgba(255,255,255,0.3);
+            display: flex;
+            align-items:center;
+            justify-content:space-between;
+            }
+        .input-box input{
+            flex: 1;
+            border: none;
+            outline: none;
+            border-radius: 5px;
+            padding: 14px 20px;
+            font-size: 18px;
+            position: relative;
+        }
+        .input-box input::-webkit-calendar-picker-indicator{
+            top:0;
+             left:0;
+             bottom: 0;
+             right: 0;
+             width:auto;
+             height:auto;
+             position: absolute;
+            background-position: calc(100% - 10px);
+            background-size: 30px ;
+            cursor: pointer;
+        }
+        .btn{
+           margin-left: 8px;
+            border: none;
+            outline: none;
+            border-radius: 5px;
+            padding: 15px 30px;
+            font-size: 18px;
+            position: relative;
+            /* color: */
+            background-color:  rgb(255, 238, 0);
+        }
+        .output-box{
+            width: 100%;
+            display: flex;
+            justify-content: space-evenly;
+            /* margin-right:  20px; */
+            
+        }
+        .output-box div{
+            background-color: #ffffffcb;
+            color: rgba(88, 88, 88, 0.884);
+            display: flex;
+            /* align-items: center; */
+            justify-content: center;
+            padding: 18px 4px 4px 4px;
+            width: 15dvh;
+            height: 10dvh;
+            font-weight: 30px;
+            border-radius: 6px;
+            box-shadow:0 2em 3em rgba(34, 33, 33, 0.3);
+        }
+        #y,#d, #m{
+            color: #000000;
+            /* font-weight: bold; */
+            
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="calculater">
+            <h1>Lets! Calulate Your Age</h1>
+            <div class="input-box">
+            <input type="date" class="input">
+            <button class="btn">Calulate</button>
+            
+        </div>
+        <div class="output-box">
+            <div>
+                <p id="y" > </p>
+                <br>
+                <p>&nbsp; Year</p>
+            </div>
+
+            <div>
+                <p id="m" > </p>
+                <br>
+                <p>&nbsp; Month</p>
+            </div>
+            <div>
+                <p id="d" > </p>
+                <br>
+                <p>&nbsp; Day</p>
+            </div>         
+           
+        </div>
+        </div>
+    </div>
+    <script>
+       var userInput = document.querySelector('.input');
+       const btn = document.querySelector('.btn');
+       userInput.max = new Date().toISOString().split("T")[0];
+        
+       btn.addEventListener('click', ()=>{
+       console.log(userInput.value)
+       var birthDate = new Date(userInput.value);
+
+       const today = new Date();
+       console.log(today)
+
+       var curDay = today.getDate();
+       var curMonth = today.getMonth()
+       var curYear = today.getFullYear() 
+
+       var d2 = birthDate.getDate();
+       var m2 = birthDate.getMonth()
+       var y2 =  birthDate.getFullYear();
+
+       
+       if(curYear >= y2){
+             var y = curYear - y2;
+       }
+
+       if(curMonth >= m2 ){
+             var m = curMonth - m2 ;
+       }
+       else{
+          y--;
+          m = 12 +  curMonth - m2 ;
+       }
+       if(curDay >= d2 ){
+             var d = curDay -d2;
+       }
+       else{
+            m--;
+            d = 30 + curDay -d2;
+            if(m<0){
+                m = 11;
+                y--;
+            }
+       }
+       
+       console.log(d , m, y)
+      const ageYear =  document.getElementById('y');
+     
+        ageYear.innerHTML = y;
+       document.getElementById('m').innerHTML = m;
+       document.getElementById('d').innerHTML = d;
+       })
+//        console.log(birthDate)
+//         
+//             var months;
+// if (today.getDate() >= birthDate.getDate()) {
+//     const today = new Date();
+//   months = today.getMonth() - birthDate.getMonth();
+//   console.log(months);
+// }
+// else if (today.getDate() < birthDate.getDate()) {
+//   months = today.getMonth() - birthDate.getMonth() - 1;
+// }
+           
+    //    console.log(today);
+    //         const birthdate = new Date(userInput);
+    //          console.log(birthdate);
+    //          var age = today.getFullYear() - birthdate.getFullYear();
+    //          var m = today.getMonth() - birthdate.getMonth();
+    //          console.log(age)
+
+    // var today = new Date();
+    // var birthDate = new Date(userInput);
+    // var age = today.getFullYear() - birthDate.getFullYear();
+    // var m = today.getMonth() - birthDate.getMonth();
+
+    // If the birth month hasn't occurred yet in the current year,
+    // or if the birth month is the same but the birth day hasn't occurred yet,
+    // decrement the age by 1
+    // if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+    //     age--;
+    // }
+    // console.log("age " + age)
+    // return age;
+
+    
+       
+
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Form Validation Example</title>
+<style>
+  .error {
+    color: red;
+  }
+</style>
+</head>
+<body>
+
+<form id="myForm">
+  <label for="username">Username (3-10 characters):</label><br>
+  <input type="text" id="username" name="username" minlength="3" maxlength="10" required><br>
+  <span class="error" id="usernameError"></span><br>
+
+  <label for="email">Email:</label><br>
+  <input type="email" id="email" name="email" required><br>
+  <span class="error" id="emailError"></span><br>
+
+  <label for="age">Age (18-99):</label><br>
+  <input type="number" id="age" name="age" min="18" max="99" required><br>
+  <span class="error" id="ageError"></span><br>
+
+  <button type="submit">Submit</button>
+</form>
+
+<h2>Click here to Check History</h2>
+<button id="history">History</button>
+<script>
+  const history = document.getElementById('history');
+  history.addEventListener('click',()=>{
+    window.history.back();
+  })
+</script>
+
+<button id ="Local">Local storage </button>
+
+<script>
+    const local = document.getElementById('Local');
+   localStorage.setItem("Name", "Ushba Akram");
+   console.log(localStorage.getItem("Name"));
+   local.innerHTML =localStorage.getItem("Name")
+   localStorage.clear()
+   console.log(localStorage.getItem("Name"));
+   sessionStorage.setItem("fruit","Pinapple");
+   console.log(sessionStorage.getItem("fruit"));
+</script>
+
+<!-- 
+<script>
+  const form = document.getElementById('myForm');
+  const usernameInput = document.getElementById('username');
+  const emailInput = document.getElementById('email');
+  const ageInput = document.getElementById('age');
+  
+  form.addEventListener('submit', function(event) {
+    event.preventDefault(); // Prevent the form from submitting by default
+    
+    if (form.checkValidity()) {
+      alert('Form submitted successfully!');
+    } else {
+      validateUsername();
+      validateEmail();
+      validateAge();
+    }
+  });
+
+  usernameInput.addEventListener('input', validateUsername);
+  emailInput.addEventListener('input', validateEmail);
+  ageInput.addEventListener('input', validateAge);
+
+  function validateUsername() {
+    const usernameError = document.getElementById('usernameError');
+    if (usernameInput.validity.valueMissing) {
+      usernameError.textContent = 'Username is required.';
+    } else if (usernameInput.validity.tooShort || usernameInput.validity.tooLong) {
+      usernameError.textContent = 'Username must be between 3 and 10 characters.';
+    } else {
+      usernameError.textContent = '';
+    }
+  }
+
+  function validateEmail() {
+    const emailError = document.getElementById('emailError');
+    if (emailInput.validity.valueMissing) {
+      emailError.textContent = 'Email is required.';
+    } else if (emailInput.validity.typeMismatch) {
+      emailError.textContent = 'Please enter a valid email address.';
+    } else {
+      emailError.textContent = '';
+    }
+  }
+
+  function validateAge() {
+    const ageError = document.getElementById('ageError');
+    if (ageInput.validity.valueMissing) {
+      ageError.textContent = 'Age is required.';
+    } else if (ageInput.validity.rangeUnderflow || ageInput.validity.rangeOverflow) {
+      ageError.textContent = 'Age must be between 18 and 99.';
+    } else {
+      ageError.textContent = '';
+    }
+  }
+</script> -->
+<script>
+   const form = document.getElementById('myForm');
+  const usernameInput = document.getElementById('username');
+  const usernameError = document.getElementById('usernameError');
+  const emailInput = document.getElementById('email');
+  const ageInput = document.getElementById('age');
+  // usernameInput.addEventListener('input',validateUsername);
+  // function validateUsername() {
+  //   const usernameError = document.getElementById('usernameError');
+  //   if (usernameInput.validity.valueMissing) {
+  //     usernameError.textContent = 'Username is required.';
+  //   } else if (usernameInput.validity.tooShort || usernameInput.validity.tooLong) {
+  //     usernameError.textContent = 'Username must be between 3 and 10 characters.';
+  //   } else {
+  //     usernameError.textContent = '';
+  //   }
+  // }
+
+  // form.addEventListener('submit', (e) => {
+  //   e.preventDefault();
+  //   console.log('submit')
+  //   if(form.checkValidity()){
+  //     console.log('submited')
+  //     alert('Form Sucessfuly');
+  //   }
+  //   else{
+  //     username();
+  //     // email();
+  //     // age();
+  //   }
+  // })
+
+  usernameInput.addEventListener('input', username)
+   //console.log( usernameInput.valdity.tooShort);
+
+  function username(){
+    console.log("in yhe funx=crtion");
+    if( usernameInput.valdity.valueMissing){
+      console.log("in the function IF stament");
+      usernameError.textContent = "Username is required"
+    }
+    else if( usernameInput.valdity.rangeOverflow){
+      console.log("in the function IF stament");
+      usernameError.textContent = "Username is invalid"
+    }
+    else{
+      usernameError.textContent = '';
+    }
+    }
+
+
+
+
+
+
+    //console.log( usernameInput.valdity.valueMissing);
+    // usernameInput.addEventListener('input', (e)=>{
+    //   if( usernameInput.valdity.valueMissing){
+    //   console.log("in the function IF stament");
+    //   usernameError.textContent = "Username is required"
+    // }
+    // else if( usernameInput.valdity.tooShort){
+    //   console.log("in the function IF stament");
+    //   usernameError.textContent = "Username is invalid"
+    // }
+    // else{
+    //   usernameError.textContent = '';
+    // }
+    // })
+   
+  
+
+  //form.addEventListener()
+</script>
+</body>
+</html>

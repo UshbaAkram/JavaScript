@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* styles.css */
+
+.container {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    /* background-color: #f9f9f9; */
+    background: linear-gradient('90deg'),red, green;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+    position: relative;
+}
+
+li {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    cursor: pointer;
+    padding: 12px 8px 12px 50px;
+    }
+ul li::before{
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    /* background-image: url(undraw_Work_together_re_5yhn.png); */
+    background-color: #b30000;
+    background-size: cover;
+    background-position: center;
+    top:12px;
+    left: 2px;
+    }
+ul li.check::before{
+        background-color: #06b300;
+    }
+.completed {
+    text-decoration: line-through;
+    color: #888;
+}
+
+.delete-btn , .edit-btn{
+    width: 10%;
+    padding: 5px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    /* margin-left: 80px; */
+}
+
+    </style>
+</head>
+<body>
+    <h1 id="hding">Its the file.html here</h1>
+    <p id="para">HY its Me</p>
+    <div id="main"></div>
+     <!--Original code -->
+    <!-- <div class="container">
+        <h1>To-Do List</h1>
+        <input type="text" id="taskInput" placeholder="Enter task...">
+        <button onclick="addTask()">Add Task</button>
+        <ul id="taskList"></ul>
+    </div> -->
+    <!-- <script>
+    // script.js
+
+// Function to add a new task
+function addTask() {
+    var taskInput = document.getElementById("taskInput");
+    var taskText = taskInput.value;
+    if (taskText.trim() !== "") {
+        var taskList = document.getElementById("taskList");
+        var li = document.createElement("li");
+        li.textContent = taskText;
+        li.addEventListener("click", function() {
+            this.classList.toggle("completed");
+        });
+        taskList.appendChild(li);
+        taskInput.value = "";
+    } else {
+        alert("Please enter a task.");
+    }
+}
+
+// Optional: Add functionality to mark tasks as completed or delete tasks
+
+</script> -->
+    <div class="container">
+        <h1>To-Do List</h1>
+        <input type="text" id="taskInput" placeholder="Task Here">
+        <button onclick="addtask()">Task to Add</button>
+        <ul id="taskList">
+            <li class="check" >huoooo</li>
+            <li>huoooo</li>
+            <li>huoooo</li>
+        </ul>
+    </div>
+    <!-- <div id="extra " class="container" style="border: 2px solid orangered; color: #0056b3;"></div> -->
+    <!--Practise 1 -->
+    <script>
+        document.getElementById('extra').innerHTML= "hiiiiii";
+        // `<div class="container"> 
+        // <b>Name</b> <i>Ushba</i>
+        // </div>`;
+        function addtask(){
+            var taskInput=document.getElementById('taskInput');
+            var inputxt=taskInput.value;
+            if(inputxt.trim() !== ""){
+               var list=document.getElementById('taskList');
+               var li=document.createElement('li');
+
+            //    var taskText = document.createElement('span');
+            //     taskText.textContent = inputxt;
+            //     li.appendChild(taskText);
+               li.textContent=inputxt;
+               
+               var del=document.createElement('button');
+                del.innerHTML='&#128465;';
+                del.classList.add('delete-btn');
+               li.textContent=inputxt;
+                del.addEventListener('click', function(){
+                    li.remove();
+                })
+           // Allow task item to be edited when double-clicked
+           var edit=document.createElement('button');
+           edit.innerHTML='&#9998;';
+                edit.classList.add('edit-btn');
+               edit.addEventListener('click', function(){
+                var input=document.createElement('input');
+                input.type="text";
+                input.value=taskText.textContent;
+                console.log(taskText.textContent)
+                input.addEventListener('keydown',function(event){
+                    if (event.key === 'Enter') {
+                            taskText.textContent = input.value;
+                            input.parentNode.removeChild(input);
+                        }
+                });
+                li.insertBefore(input, taskText);
+                    input.focus();
+               });
+               li.appendChild(del);
+               li.appendChild(edit);
+               list.appendChild(li);
+             }
+              else{
+                alert("Please Eneter task to do !")
+            }
+        
+               
+                taskInput.value="";
+               li.addEventListener('click',function (){
+                this.classList.toggle("completed");
+               })
+            }
+           
+    </script>
+     <!--Practise 2 -->
+    <!-- <script>
+        function addtask(){
+            var inputxt=document.getElementById('taskInput');
+            var tasktxt=inputxt.value;
+            if(tasktxt.trim() !== ""){
+                var listxt=document.getElementById('taskList');
+                var li=document.createElement('li')
+                li.textContent=tasktxt;
+                li.addEventListener("click", function() {
+            this.classList.toggle("completed");
+        });
+        listxt.appendChild(li);
+        inputxt.value="";
+         }
+            
+         else {
+        alert("Please enter a task.");
+    } 
+
+        }
+    </script> -->
+    
+    <script>
+        var h=document.getElementById('hding');
+        var txt="I am in the paragraph";
+        h.innerHTML=txt;
+        //__________create Elemnt _____________
+       var para2= document.createElement('p');
+       para2.innerHTML="I am new paragraph created";
+
+       //__________& then Append Elemnt _____________
+       var p=document.getElementById("para");
+        p.appendChild(para2);
+
+        //__________text Node _____________
+        var mainEl=document.getElementById("main");
+        var txtNode=document.createTextNode("an extra text in #main div");
+        mainEl.appendChild(txtNode);
+
+      //  h.innerHTML="I am in yhe paragraph ";
+    </script>
+
+</body>
+</html>
