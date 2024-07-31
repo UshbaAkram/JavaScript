@@ -5,183 +5,188 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Number Guessing Game</title>
-   
     <style>
         html {
-  font-family: sans-serif;
-}
+            font-family: 'Arial', sans-serif;
+        }
 
-body {
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background: linear-gradient(135deg, #1d1d1d, #333);
+            color: #fff;
+        }
 
-  width: 300px;
-  max-width: 750px;
-  min-width: 480px;
-  margin: 0 auto;
-  background-color: #212121;
-}
+        nav {
+            position: absolute;
+            top: 0;
+            width: 100%;
+            background: #444;
+            color: #fff;
+            padding: 1rem;
+            text-align: center;
+        }
 
-.lastResult {
-  color: white;
-  padding: 7px;
-}
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 18px;
+        }
 
-.guesses {
-  color: white;
-  padding: 7px;
-}
+        #wrapper {
+            background: #222;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            width: 100%;
+            max-width: 600px;
+            text-align: center;
+        }
 
-button {
-  background-color: #141414;
-  color: #fff;
-  width: 250px;
-  height: 50px;
-  border-radius: 25px;
-  font-size: 30px;
-  border-style: none;
-  margin-top: 30px;
-  /* margin-left: 50px; */
-}
+        h1 {
+            background: #444;
+            padding: 1rem;
+            border-radius: 8px;
+            color: #fff;
+            font-size: 2rem;
+        }
 
-#subt {
-  background-color: #161616;
-  color: #ffffff;
-  width: 200px;
-  height: 50px;
-  border-radius: 10px;
-  font-size: 20px;
-  border-style: none;
-  margin-top: 50px;
-  /* margin-left: 75px; */
-}
+        p {
+            font-size: 18px;
+            margin: 1rem 0;
+        }
 
-#guessField {
-  color: #000;
-  width: 250px;
-  height: 50px;
-  font-size: 30px;
-  border-style: none;
-  margin-top: 25px;
+        label {
+            display: block;
+            margin: 1rem 0;
+            font-size: 24px;
+            color: #fff;
+        }
 
-  /* margin-left: 50px; */
-  border: 5px solid #6c6d6d;
-  text-align: center;
-}
+        input[type="text"] {
+            width: 100%;
+            padding: 0.75rem;
+            font-size: 24px;
+            border: 2px solid #666;
+            border-radius: 8px;
+            background: #333;
+            color: #fff;
+            margin-bottom: 1rem;
+            box-sizing: border-box;
+        }
 
-#guess {
-  font-size: 55px;
-  /* margin-left: 90px; */
-  margin-top: 120px;
-  color: #fff;
-}
+        input[type="submit"] {
+            background: #007bff;
+            color: #fff;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 24px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
 
-.guesses {
-  background-color: #7a7a7a;
-}
+        input[type="submit"]:hover {
+            background: #0056b3;
+        }
 
-#wrapper {
-  box-sizing: border-box;
-  text-align: center;
-  width: 450px;
-  height: auto;
-  background-color: #474747;
-  color: #fff;
-  font-size: 20px;
-}
+        .resultParas {
+            margin-top: 1.5rem;
+            font-size: 18px;
+            color: #fff;
+        }
 
-h1 {
-  background-color: #161616;
+        .guesses {
+            background: #333;
+            padding: 0.5rem;
+            border-radius: 8px;
+        }
 
-  color: #fff;
-  text-align: center;
-}
+        .lastResult {
+            font-weight: bold;
+            color: #ff0;
+        }
 
-p {
-  font-size: 16px;
-  text-align: center;
-}
-
+        .lowOrHi {
+            font-weight: bold;
+            margin-top: 1rem;
+            font-size: 20px;
+        }
     </style>
 </head>
-<body style="background-color:#212121; color:#fff;">
-  <nav>
-    <a href="/" aria-current="page">Home</a>
-  </nav>
-    
+<body>
+    <nav>
+        <a href="/" aria-current="page">Home</a>
+    </nav>
+
     <div id="wrapper">
-      <h1>Number guessing game</h1>
-    <p>Try and guess a random number between 1 and 100.</p>
-    <p>You have 10 attempts to guess the right number.</p>
-    </br>
+        <h1>Number Guessing Game</h1>
+        <p>Try and guess a random number between 1 and 100.</p>
+        <p>You have 10 attempts to guess the right number.</p>
         <form class="form">
-            <label2 for="guessField" id="guess">Guess a number</label>
-            <input type="text" id="guessField" class="guessField">
-            <input type="submit" id="subt" value="Submit guess" class="guessSubmit">
+            <label for="guessField">Guess a number</label>
+            <input type="text" id="guessField" class="guessField" placeholder="Enter your guess">
+            <input type="submit" id="subt" value="Submit Guess" class="guessSubmit">
         </form>
 
         <div class="resultParas">
-            <p >Previous Guesses: <span class="guesses"></span></p>
-            <p >Guesses Remaining: <span class="lastResult">10</span></p>
-            <p class="lowOrHi" style="border: 2px solid yellow;"></p>
+            <p>Previous Guesses: <span class="guesses"></span></p>
+            <p>Guesses Remaining: <span class="lastResult">10</span></p>
+            <p class="lowOrHi"></p>
         </div>
     </div>
 
     <script>
+        const form = document.querySelector('form');
+        const inputField = document.querySelector('#guessField');
+        const lowOrHi = document.querySelector('.lowOrHi');
+        const previous = document.querySelector('.guesses');
+        const remaining = document.querySelector('.lastResult');
+        const subt = document.querySelector('#subt');
 
-     const form = document.querySelector('form');
-     const inputField = document.querySelector('#guessField');
-     const lowOrHi = document.querySelector('.lowOrHi');
-     const previous = document.querySelector('.guesses');
-     const remaining = document.querySelector('.lastResult');
-     const subt = document.querySelector('#subt');
+        const random = Math.floor(Math.random() * 100) + 1;
+        console.log("Random: " + random);
 
-     const random = Math.floor(Math.random() * 100);
-     console.log("Random: " + random);
-    
-     let prev = [];
-     let num = 1;
+        let prev = [];
+        let num = 1;
 
-     function checkGuess(guess){
-       
-       if(guess === random && guess != "" )
-       {
-        lowOrHi.innerHTML = "Right Guess";
-       }
-       else if(guess < 1 || guess > 100){
-        lowOrHi.innerHTML = "Guess must in between 1 to 100. Please try again!";
-       }
-       else{
+        function checkGuess(guess) {
+            if (guess === random) {
+                lowOrHi.innerHTML = "Right Guess!";
+                lowOrHi.style.color = 'green';
+            } else if (guess < 1 || guess > 100) {
+                lowOrHi.innerHTML = "Guess must be between 1 and 100. Please try again!";
+                lowOrHi.style.color = 'red';
+            } else {
+                if (guess > random) {
+                    lowOrHi.innerHTML = "Guess is too high. Try again!";
+                } else if (guess < random) {
+                    lowOrHi.innerHTML = "Guess is too low. Try again!";
+                }
 
-        //console.log("hi")
-            
-            if(guess > random){
-                lowOrHi.innerHTML = "Guess is too greater. Please try again!";
-                //lowOrHi.innerHTML = "try again";
+                prev.push(guess);
+                previous.innerHTML = prev.join(', ');
+                num++;
+                remaining.innerHTML = `${11 - num} `;
+
+                if (num > 10) {
+                    inputField.setAttribute('disabled', '');
+                    subt.setAttribute('disabled', '');
+                    lowOrHi.innerHTML = "Game Over! The number was " + random;
+                }
             }
-            else if(guess < random){
-                lowOrHi.innerHTML = "Guess is too smaller . Please try again!";
-            }
-        inputField.value ='';
-        // let prev = [];
-        // let num = 1;
-        prev +=[guess];
-        previous.innerHTML=`${guess}, `;
-        num++;
-        remaining.innerHTML = `${11 - num} `;
-        if(num > 10){
-            inputField.setAttribute('disabled', '');
-            subt.setAttribute('disabled', '');
-
-            lowOrHi.innerHTML = "Game Finished !";
         }
-       }
-     }
-     form.addEventListener('submit', (e) => {
-        e.preventDefault();
-       const input = document.getElementById('guessField');
-       const guess = parseInt(input.value);
-       console.log("Guess: " + guess);
-        checkGuess(guess);
-     }); 
+
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const guess = parseInt(inputField.value);
+            checkGuess(guess);
+            inputField.value = '';
+        });
     </script>
 </body>
 </html>

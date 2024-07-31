@@ -4,79 +4,90 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Color Changer</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: background-color 1s ease;
+            background-color: #2c3e50;
+            color: #fff;
+            text-align: center;
+        }
+
+        #container {
+            max-width: 600px;
+            margin: 20px;
+        }
+
+        button {
+            background-color: #3498db;
+            border: none;
+            color: white;
+            padding: 15px 30px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 18px;
+            margin: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #2980b9;
+            transform: scale(1.05);
+        }
+
+        #counter {
+            font-size: 24px;
+            margin-top: 20px;
+        }
+    </style>
 </head>
 <body>
-    <button id="start">Start</button>
-    <button id="end">End</button>
+    <div id="container">
+        <h1>Color Changer</h1>
+        <button id="start">Start</button>
+        <button id="end">End</button>
+        <div id="counter">Colors Changed: <span id="colorCount">0</span></div>
+    </div>
 
     <script>
-        function randomColor(){
+        function randomColor() {
             const hex = '0123456789ABCDEF';
             let color = '#';
-            for(let i=0; i < 6; i++){
-                color += hex[Math.floor(Math.random() * 16)];
-                
-            }
-            console.log(color);
-            return color;
-        }
-    let timeout; 
-      function start(){
-        if(!timeout){
-        timeout = setInterval(() => {
-            document.body.style.backgroundColor = randomColor();
-
-        },1000)
-    }
-      }  
-      function stop(){
-        clearInterval(timeout);
-        timeout=null;
-        //document.body.style.backgroundColor = randomColor();
-      } 
-      document.getElementById('start').addEventListener('click',start);
-      document.getElementById('end').addEventListener('click',stop);
-
-    </script>
-</body>
-</html>
-
-
-
-<!-- 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Color Changer</title>
-</head>
-<body>
-    <button id="start">Start</button>
-    <button id="end">End</button>
-
-    <script>
-        function randomColor(){
-            const hex = '0123456789ABCDEF';
-            let color = '#';
-            for(let i=0; i<6; i++){
+            for (let i = 0; i < 6; i++) {
                 color += hex[Math.floor(Math.random() * 16)];
             }
-            console.log(color);
             return color;
         }
 
-        function start(){
-            document.body.style.backgroundColor = randomColor();
+        let timeout;
+        let colorCount = 0;
+
+        function start() {
+            if (!timeout) {
+                timeout = setInterval(() => {
+                    document.body.style.backgroundColor = randomColor();
+                    colorCount++;
+                    document.getElementById('colorCount').textContent = colorCount;
+                }, 1000);
+            }
         }
 
-        function end(){
-            // Reset background color or do any other actions when "End" button is clicked
-            document.body.style.backgroundColor = ''; // Reset to default color
+        function stop() {
+            clearInterval(timeout);
+            timeout = null;
         }
 
         document.getElementById('start').addEventListener('click', start);
-        document.getElementById('end').addEventListener('click', end);
+        document.getElementById('end').addEventListener('click', stop);
     </script>
 </body>
-</html> -->
+</html>
