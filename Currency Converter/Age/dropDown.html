@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drop Down</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <style>
+        .container{
+            width: 300px;
+            margin: 100px auto 0;
+        }
+        ul{
+            list-style: none;
+            background-color: #00f3;
+            /* width: 60px; */
+            border-radius: 5px;
+        }
+        .drop-down{
+            position: relative;
+        }
+        .list-search-container{
+            position: absolute;
+            /* display: none; */
+            background-color: white;
+            margin-top: 15px;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 10px 20px rgba(0,0,0,0.3);
+        }
+
+        .container.active .list-search-container{
+            display: block;
+            }
+            .none{
+                display: none;
+            }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+       <div class="select-option">
+            <span id="span">Select Country</span>
+            <i class="fa-solid fa-caret-down"></i>   
+        </div>
+        <div class="list-search-container">
+
+            <div class="search-box">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="text" id="box" placeholder="Search..">
+            </div>
+            <ul class="list">
+                <li class="list-item">Country 1</li>
+                <li class="list-item">Country 2</li>
+                <li class="list-item">Country 3</li>
+            </ul>
+        </div>
+   </div>
+<script>
+    let countries = ["Afghanistan", "Algeria", "Argentina", "Australia", "Bangladesh", "Belgium", "Bhutan",
+                 "Brazil", "Canada", "China", "Denmark", "Ethiopia", "Finland", "France", "Germany",
+                 "Hungary", "Iceland", "India", "Indonesia", "Iran", "Italy", "Japan", "Malaysia",
+                 "Maldives", "Mexico", "Morocco", "Nepal", "Netherlands", "Nigeria", "Norway", "Pakistan",
+                 "Peru", "Russia", "Romania", "South Africa", "Spain", "Sri Lanka", "Sweden", "Switzerland",
+                 "Thailand", "Turkey", "Uganda", "Ukraine", "United States", "United Kingdom", "Vietnam"];
+
+    const selectOption = document.querySelector('.select-option');
+    const container = document.querySelector('.list-search-container');
+    const list = document.querySelector('.list');
+    const sBox = document.getElementsByClassName('select-option');
+    var span = document.getElementById('span')
+console.log(span);
+
+    selectOption.addEventListener('click', ()=>{
+        container.classList.toggle('active');
+        container.classList.toggle('none');
+    })
+
+    function addCountry(){
+       
+        list.innerHTML='';
+        countries.forEach((country)=>{
+            var listItem = document.createElement('li');
+            listItem.textContent = country;
+            list.appendChild(listItem)
+                 listItem.addEventListener('click',function (e){
+                 var select = e.target.textContent;
+                 span.innerHTML=select;
+                 container.classList.toggle('none');
+            })
+            })
+         }
+      addCountry();
+      box.addEventListener('input', function() {
+  var filter = box.value.toUpperCase();
+        
+  for (var i = 0; i < list.length; i++) {
+    var textValue = list[i].textContent || list[i].innerText;
+    if (textValue.toUpperCase().indexOf(filter) > -1) {
+      list[i].style.display = '';
+    } else {
+      list[i].style.display = 'none';
+    }
+  }
+});
+ </script>
+
+<script>
+    //   let countries = ["Afghanistan", "Algeria", "Argentina", "Australia", "Bangladesh", "Belgium", "Bhutan",
+    //              "Brazil", "Canada", "China", "Denmark", "Ethiopia", "Finland", "France", "Germany",
+    //              "Hungary", "Iceland", "India", "Indonesia", "Iran", "Italy", "Japan", "Malaysia",
+    //              "Maldives", "Mexico", "Morocco", "Nepal", "Netherlands", "Nigeria", "Norway", "Pakistan",
+    //              "Peru", "Russia", "Romania", "South Africa", "Spain", "Sri Lanka", "Sweden", "Switzerland",
+    //              "Thailand", "Turkey", "Uganda", "Ukraine", "United States", "United Kingdom", "Vietnam"];
+
+// let container = document.querySelector('.container');
+// let selectBtn = container.querySelector('.select-option');
+// let dropDownList = container.querySelector('.list-search-container');
+// let searchInput = container.querySelector("#search");
+// let lists = dropDownList.querySelector('.list');
+
+// selectBtn.addEventListener('click',()=>{
+    
+// })
+
+// function addCountry(selectedCountry){
+//     lists.innerHTML = "";    
+//     countries.forEach((country)=>{
+//         let isSelected = selectedCountry==country?"selected":"";
+//         let listItem = '<li class="'+ isSelected +'">' + country + '</li>';
+//         lists.insertAdjacentHTML('beforeend',listItem);
+//     })
+//     addClickEventToLi();
+// }
+// addCountry();
+
+// function addClickEventToLi(){
+//     lists.querySelectorAll('li').forEach(listItem=>{
+//         listItem.addEventListener('click',()=>{
+//             updateSelectCountry(listItem);
+//         })
+//     })
+// }
+
+
+// function updateSelectCountry(listItem){
+//     searchInput.value = "";
+//     selectBtn.firstElementChild.innerHTML = listItem.innerHTML;
+//     container.classList.remove('active'); 
+//     addCountry(listItem.innerHTML);   
+// }
+
+// searchInput.addEventListener('keyup',()=>{
+//     let searchInpVal = searchInput.value.toLowerCase();
+//     let filteredCountries = countries.filter(country=>{
+//         return country.toLocaleLowerCase().startsWith(searchInpVal);
+//     }).map(country=>{        
+//         return '<li>' + country + '</li>';
+//     }).join("");
+//     lists.innerHTML = filteredCountries;
+//     addClickEventToLi();  
+// })
+</script>
+
+
+
+
+    <!-- <div class="drop-down">
+        <a id="btn">
+            Drop Down
+        </a>
+        <div class="e">
+           <ul>
+            <li class="item">option 1</li>
+            <li class="item">option 1</li>
+            <li class="item">option 1</li>
+            <li class="item">option 1</li>
+            <li class="item">option 1</li>
+           </ul>
+        </div>
+    </div> -->
+
+<!-- <script>
+    const bttn = document.getElementById('bttn')
+    const menu = document.getElementsByClassName('es');
+    //console.log(bttn);
+    // menu.classList.add("menu");
+//     bttn.addEventListener('click',(e) =>{
+//         //e.stopPropagation();
+//        // menu.classList.remove("menu");
+//         console.log("jii");
+//         btn.innerHTML = 'hyyyy';
+//        // menu.classList.add('show');
+
+//     })
+// </script> -->
+
+</body>
+</html>
